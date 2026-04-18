@@ -1,0 +1,23 @@
+import express from 'express';
+import { Pedido, Entrega, Categoria, Produto, Avaliacao } from './models/index.js';
+import categoriaRoutes from './routes/categoriaRoutes.js';
+import pedidoRoutes from './routes/pedidoRoutes.js';
+import avaliacaoRoutes from './routes/avaliacaoRoutes.js';
+
+const app = express();
+
+const port = 3000;
+
+app.use(express.json());
+
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
+app.use('/categoria', categoriaRoutes);
+app.use('/avaliacao', avaliacaoRoutes);
+app.use('/pedido', pedidoRoutes);
+
+app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`);
+});
